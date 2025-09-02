@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mom! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .main-photo-container {
+            position: relative;
+            margin: 2rem 0;
+            animation: photoEntrance 3s ease-out;
+        }
+
+        @keyframes photoEntrance {
+            0% {
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(90deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .main-photo {
+            width: 300px;
+            height: 500px;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,182,193,0.6);
+            object-fit: cover;
+            animation: glow 3s ease-in-out infinite alternate;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><circle cx="150" cy="150" r="140" fill="%23ff6b6b"/><text x="150" y="150" text-anchor="middle" dy="0.3em" fill="white" font-size="24" font-family="Arial">Mom\'s Photo</text><text x="150" y="180" text-anchor="middle" dy="0.3em" fill="white" font-size="16" font-family="Arial">Click to upload</text></svg>') center/cover;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .main-photo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255,255,255,1), 0 0 80px rgba(255,182,193,0.8);
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,182,193,0.6); }
+            100% { box-shadow: 0 0 40px rgba(255,255,255,1), 0 0 80px rgba(255,105,180,0.8); }
+        }
+
+        .message {
+            font-size: 1.8rem;
+            color: #fff;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 2s ease-out 1s both;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .decorative-images {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; }
+        .floating-element:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+        .floating-element:nth-child(6) { top: 60%; right: 5%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-40px) rotate(-5deg); }
+            75% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        .balloon, .gift, .cake, .heart, .star, .party-hat {
+            font-size: 3rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .firework {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) translate(var(--dx), var(--dy));
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        .birthday-song {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #333;
+            backdrop-filter: blur(10px);
+        }
+
+        .birthday-song:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .heart-trail {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            animation: heartFloat 4s ease-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-50px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+
+        .photo-upload {
+            display: none;
+        }
+
+        .upload-hint {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            margin-top: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .main-photo {
+                width: 200px;
+                height: 250px;
+            }
+            .message {
+                font-size: 1.4rem;
+                padding: 0 20px;
+            }
+            .floating-element {
+                font-size: 2rem;
+            }
+        }
+
+        .celebration-text {
+            position: absolute;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: celebrationMove 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes celebrationMove {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(20px) translateY(-10px) rotate(5deg); }
+            50% { transform: translateX(-20px) translateY(-20px) rotate(-5deg); }
+            75% { transform: translateX(15px) translateY(-5px) rotate(3deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Floating decorative elements -->
+        <div class="decorative-images">
+            <div class="floating-element balloon">🎈</div>
+            <div class="floating-element gift">🎁</div>
+            <div class="floating-element cake">🎂</div>
+            <div class="floating-element heart">💖</div>
+            <div class="floating-element star">⭐</div>
+            <div class="floating-element party-hat">🎉</div>
+        </div>
+
+        <!-- Main content -->
+        <h1 class="title">Happy Birthday PAPA! 🎊</h1>
+        
+        <div class="main-photo-container">
+            <img class="main-photo" id="mainPhoto" 
+           src="https://i.postimg.cc/9MLXDYpV/Whats-App-Image-2025-09-02-at-18-20-04-72cbb9eb.jpg" 
+           alt="Mom's Photo">
+        </div>
+
+        <div class="message">
+            You are the most amazing mom in the world! 💕<br>
+            Your love, kindness, and endless support mean everything to us.<br>
+            Today we celebrate YOU! 🌟
+        </div>
+
+        <!-- Birthday song button -->
+        <div class="birthday-song" onclick="playBirthdaySong()">
+      🎵 Play Birthday Song
+    </div>
+    </div>
+
+    <script>
+        // Photo upload functionality
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('mainPhoto').src = e.target.result;
+                    document.querySelector('.upload-hint').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Fireworks system
+        function createFirework(x, y) {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8', '#fdcb6e'];
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
+            document.body.appendChild(firework);
+
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (i / 20) * Math.PI * 2;
+                const distance = Math.random() * 100 + 50;
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--dx', dx + 'px');
+                particle.style.setProperty('--dy', dy + 'px');
+                
+                firework.appendChild(particle);
+            }
+
+            setTimeout(() => {
+                document.body.removeChild(firework);
+            }, 1500);
+        }
+
+        // Auto fireworks
+        function autoFireworks() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.7;
+            createFirework(x, y);
+        }
+
+        // Click fireworks
+        document.addEventListener('click', function(e) {
+            if (e.target.id !== 'mainPhoto' && !e.target.classList.contains('birthday-song')) {
+                createFirework(e.clientX, e.clientY);
+            }
+        });
+
+        // Confetti system
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fd79a8'];
+            for (let i = 0; i < 5; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
+        }
+
+        // Sparkles around main photo
+        function createSparkles() {
+            const photoContainer = document.querySelector('.main-photo-container');
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            
+            const rect = photoContainer.getBoundingClientRect();
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 180;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            
+            photoContainer.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 2000);
+        }
+
+        // Heart trail on photo hover
+        document.getElementById('mainPhoto').addEventListener('mouseenter', function() {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-trail';
+                    heart.innerHTML = '💖';
+                    heart.style.left = (Math.random() * 100) + 'px';
+                    heart.style.top = (Math.random() * 100) + 'px';
+                    this.parentNode.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 4000);
+                }, i * 200);
+            }
+        });
+
+        // Celebration text
+        function addCelebrationText() {
+            const messages = ['Amazing Mom!', 'So Special!', 'We Love You!', 'Best Mom Ever!', 'You Rock!'];
+            const text = document.createElement('div');
+            text.className = 'celebration-text';
+            text.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+            text.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+            text.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            text.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            
+            document.body.appendChild(text);
+            
+            setTimeout(() => {
+                if (text.parentNode) {
+                    text.parentNode.removeChild(text);
+                }
+            }, 4000);
+        }
+
+        // Birthday song simulation
+        function playBirthdaySong() {
+      const button = document.querySelector('.birthday-song');
+      const audio = document.getElementById('birthday-audio');
+
+      audio.currentTime = 0; 
+      audio.play();
+
+      button.innerHTML = '🎵 Playing Birthday Song...';
+      button.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+      button.style.color = 'white';
+
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight * 0.8;
+          createFirework(x, y);
+        }, i * 200);
+      }
+
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          addCelebrationText();
+        }, i * 300);
+      }
+
+      audio.onended = () => {
+        button.innerHTML = '🎵 Play Birthday Song';
+        button.style.background = 'rgba(255,255,255,0.9)';
+        button.style.color = '#333';
+      };
+    }
+
+    // Auto start Telugu song when page loads
+    window.addEventListener("load", () => {
+      const audio = document.getElementById("birthday-audio");
+      audio.muted = false;
+      audio.play().catch(() => {
+        // if autoplay blocked, wait for user interaction
+        document.body.addEventListener("click", () => {
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+
+  <!-- Telugu style Happy Birthday instrumental -->
+  <audio id="birthday-audio" autoplay loop>
+    <source src="happy-birthday-357371.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+</html>
